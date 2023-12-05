@@ -18,8 +18,6 @@ const Menus = () => {
 const NavBar = () => {
   const { user, logOut } = UseAuth();
 
-  // console.log(user.photoURL);
-  //   const user = false;
   return (
     <>
       <div className="navbar bg-base-100">

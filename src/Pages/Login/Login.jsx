@@ -7,9 +7,9 @@ const Login = () => {
   const { singIn } = UseAuth();
   const navigate = useNavigate();
 
+  // sign in handler =======
   const handlerSingin = (e) => {
     e.preventDefault();
-
     const email = e.target.email.value;
     const password = e.target.password.value;
 
