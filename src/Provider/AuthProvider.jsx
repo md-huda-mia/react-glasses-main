@@ -13,19 +13,24 @@ export const AuthContext = createContext(null);
 const googleProvider = new GoogleAuthProvider();
 
 const AuthProvider = ({ children }) => {
+  const [loading, setLoading] = useState(true);
   const [user, setUser] = useState({});
+
   // google login Provider ======
   const googleLogin = () => {
+    setLoading(true);
     return signInWithPopup(auth, googleProvider);
   };
 
   // === register user ========
   const createUser = (email, password) => {
+    setLoading(true);
     return createUserWithEmailAndPassword(auth, email, password);
   };
 
   // === Sign in ==============
   const singIn = (email, password) => {
+    setLoading(true);
     return signInWithEmailAndPassword(auth, email, password);
   };
   //=== logOut=========
@@ -37,15 +42,17 @@ const AuthProvider = ({ children }) => {
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
       setUser(user);
+      setLoading(false);
     });
   }, []);
-  console.log(user);
+  // ============
   const authentications = {
     googleLogin,
     createUser,
     singIn,
     logOut,
     user,
+    loading,
   };
 
   return (
