@@ -4,7 +4,7 @@ import UseAuth from "../../Hooks/UseAuth";
 import toast from "react-hot-toast";
 
 const Register = () => {
-  const { createUser } = UseAuth();
+  const { createUser, handlerUpdateProfile } = UseAuth();
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
@@ -19,13 +19,17 @@ const Register = () => {
       toast.error("password must be at least 6 characther");
       return;
     }
-    // create new user
+    // creating a new user
     createUser(email, password)
       .then((res) => {
+        handlerUpdateProfile(name, img);
         toast.success("User created successfully");
         navigate("/");
       })
-      .catch((error) => console.log(error));
+      .catch((error) => {
+        toast.error(error.message);
+        console.log(error, error.message);
+      });
   };
 
   return (

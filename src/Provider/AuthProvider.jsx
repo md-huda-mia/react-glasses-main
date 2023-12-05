@@ -1,16 +1,19 @@
 import {
+  GithubAuthProvider,
   GoogleAuthProvider,
   createUserWithEmailAndPassword,
   onAuthStateChanged,
   signInWithEmailAndPassword,
   signInWithPopup,
   signOut,
+  updateProfile,
 } from "firebase/auth";
 import React, { createContext, useEffect, useState } from "react";
 import { auth } from "../config/firebase.config";
 
 export const AuthContext = createContext(null);
 const googleProvider = new GoogleAuthProvider();
+const gitHubProvider = new GithubAuthProvider();
 
 const AuthProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
@@ -20,6 +23,12 @@ const AuthProvider = ({ children }) => {
   const googleLogin = () => {
     setLoading(true);
     return signInWithPopup(auth, googleProvider);
+  };
+
+  // gitHub login Provider ======
+  const githubLogin = () => {
+    setLoading(true);
+    return signInWithPopup(auth, gitHubProvider);
   };
 
   // === register user ========
@@ -33,6 +42,15 @@ const AuthProvider = ({ children }) => {
     setLoading(true);
     return signInWithEmailAndPassword(auth, email, password);
   };
+
+  //  sing in update profile
+  const handlerUpdateProfile = (name, photo) => {
+    updateProfile(auth.currentUser, {
+      displayName: name,
+      photoURL: photo,
+    });
+  };
+
   //=== logOut=========
   const logOut = () => {
     return signOut(auth);
@@ -48,11 +66,13 @@ const AuthProvider = ({ children }) => {
   // ============
   const authentications = {
     googleLogin,
+    githubLogin,
     createUser,
     singIn,
     logOut,
     user,
     loading,
+    handlerUpdateProfile,
   };
 
   return (
