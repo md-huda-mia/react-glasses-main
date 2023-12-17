@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import UseAuth from "../../Hooks/UseAuth";
-
+ 
 const Menus = () => {
   const links = ["products", "about", "contact", "blog"];
   return (

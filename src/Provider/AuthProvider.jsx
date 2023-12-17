@@ -1,6 +1,7 @@
 import {
   GithubAuthProvider,
   GoogleAuthProvider,
+  OAuthProvider,
   createUserWithEmailAndPassword,
   onAuthStateChanged,
   signInWithEmailAndPassword,
@@ -14,12 +15,13 @@ import { auth } from "../config/firebase.config";
 export const AuthContext = createContext(null);
 const googleProvider = new GoogleAuthProvider();
 const gitHubProvider = new GithubAuthProvider();
+const microsoftProvider = new OAuthProvider("microsoft.com");
 
 const AuthProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
   const [user, setUser] = useState({});
 
-  // google login Provider ======
+  // google login Provider  ======
   const googleLogin = () => {
     setLoading(true);
     return signInWithPopup(auth, googleProvider);
@@ -29,6 +31,12 @@ const AuthProvider = ({ children }) => {
   const githubLogin = () => {
     setLoading(true);
     return signInWithPopup(auth, gitHubProvider);
+  };
+
+  // microsoft login Provider ======
+  const microsoftLogin = () => {
+    setLoading(true);
+    return signInWithPopup(auth, microsoftProvider);
   };
 
   // === register user ========
@@ -71,6 +79,7 @@ const AuthProvider = ({ children }) => {
     singIn,
     logOut,
     user,
+    microsoftLogin,
     loading,
     handlerUpdateProfile,
   };

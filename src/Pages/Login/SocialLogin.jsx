@@ -3,7 +3,8 @@ import { AuthContext } from "../../Provider/AuthProvider";
 import { useNavigate } from "react-router-dom";
 
 const SocialLogin = () => {
-  const { auth, googleLogin, githubLogin } = useContext(AuthContext);
+  const { auth, googleLogin, githubLogin, microsoftLogin } =
+    useContext(AuthContext);
   const navigate = useNavigate();
 
   // social handler login ==========
@@ -29,6 +30,11 @@ const SocialLogin = () => {
           onClick={() => handleSocialLogin(githubLogin)}
           className="btn btn-neutral btn-sm ">
           GitHub
+        </button>
+        <button
+          onClick={() => handleSocialLogin(microsoftLogin)}
+          className="btn btn-neutral btn-sm ">
+          Microsoft
         </button>
       </div>
     </>
