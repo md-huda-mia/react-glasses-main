@@ -4,8 +4,7 @@ import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 
 const SocialLogin = () => {
-  const { auth, googleLogin, githubLogin, microsoftLogin } =
-    useContext(AuthContext);
+  const { auth, googleLogin, githubLogin } = useContext(AuthContext);
   const navigate = useNavigate();
 
   // social handler login ==========

@@ -1,7 +1,6 @@
 import {
   GithubAuthProvider,
   GoogleAuthProvider,
-  OAuthProvider,
   createUserWithEmailAndPassword,
   onAuthStateChanged,
   signInWithEmailAndPassword,
@@ -15,7 +14,6 @@ import { auth } from "../config/firebase.config";
 export const AuthContext = createContext(null);
 const googleProvider = new GoogleAuthProvider();
 const gitHubProvider = new GithubAuthProvider();
-const microsoftProvider = new OAuthProvider("microsoft.com");
 
 const AuthProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
@@ -73,7 +71,6 @@ const AuthProvider = ({ children }) => {
     singIn,
     logOut,
     user,
-    microsoftLogin,
     loading,
     handlerUpdateProfile,
   };
