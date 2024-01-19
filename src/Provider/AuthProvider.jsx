@@ -33,12 +33,6 @@ const AuthProvider = ({ children }) => {
     return signInWithPopup(auth, gitHubProvider);
   };
 
-  // microsoft login Provider ======
-  const microsoftLogin = () => {
-    setLoading(true);
-    return signInWithPopup(auth, microsoftProvider);
-  };
-
   // === register user ========
   const createUser = (email, password) => {
     setLoading(true);

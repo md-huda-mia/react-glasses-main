@@ -32,11 +32,6 @@ const SocialLogin = () => {
           className="btn btn-neutral btn-sm ">
           GitHub
         </button>
-        <button
-          onClick={() => handleSocialLogin(microsoftLogin)}
-          className="btn btn-neutral btn-sm ">
-          Microsoft
-        </button>
       </div>
     </>
   );
