@@ -1,8 +1,8 @@
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
- 
+
 const all = import.meta.env;
- 
+
 const firebaseConfig = {
   apiKey: all.VITE_apiKey,
   authDomain: all.VITE_authDomain,
@@ -11,5 +11,6 @@ const firebaseConfig = {
   messagingSenderId: all.VITE_messagingSenderId,
   appId: all.VITE_appId,
 };
+
 const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
